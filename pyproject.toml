@@ -1,0 +1,83 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "unstructured-haystack"
+dynamic = ["version"]
+description = ''
+readme = "README.md"
+requires-python = ">=3.7"
+license = "MIT"
+keywords = []
+authors = [
+  { name = "Tuana Celik", email = "tuana.celik@deepset.ai" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = [
+  "safetensors==0.3.3.post1",
+  "unstructured-inference",
+  "haystack-ai"
+]
+
+[project.optional-dependencies]
+github = [
+  "unstructured[github]"
+]
+discord = [
+  "unstructured[discord]"
+]
+all = [
+  "unstructured-haystack[github,discord]"
+]
+
+[project.urls]
+Documentation = "https://github.com/unknown/unstructured-haystack#readme"
+Issues = "https://github.com/unknown/unstructured-haystack/issues"
+Source = "https://github.com/unknown/unstructured-haystack"
+
+[tool.hatch.version]
+path = "src/unstructured_haystack/__about__.py"
+
+[tool.hatch.envs.test]
+dependencies = [
+  "pytest",
+  "pytest-cov",
+  "python-dotenv"
+]
+[tool.hatch.envs.test.scripts]
+cov = "pytest --cov-report=term-missing --cov-config=pyproject.toml --cov=src/unstructured_haystack --cov=tests {args}"
+no-cov = "cov --no-cov {args}"
+
+[[tool.hatch.envs.all.matrix]]
+python = ["37", "38", "39", "310", "311"]
+
+[tool.coverage.run]
+branch = true
+parallel = true
+omit = [
+  "src/unstructured_haystack/__about__.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
+
+[tool.pytest.ini_options]
+markers = [
+  "unit: unit tests",
+  "integration: integration tests",
+]
