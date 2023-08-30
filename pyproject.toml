@@ -27,18 +27,8 @@ classifiers = [
 dependencies = [
   "safetensors==0.3.3.post1",
   "unstructured-inference",
+  "unstructured[github,discord]",
   "haystack-ai"
-]
-
-[project.optional-dependencies]
-github = [
-  "unstructured[github]"
-]
-discord = [
-  "unstructured[discord]"
-]
-all = [
-  "unstructured-haystack[github,discord]"
 ]
 
 [project.urls]

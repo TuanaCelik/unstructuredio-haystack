@@ -2,5 +2,5 @@
 #
 # SPDX-License-Identifier: MIT
 
-from .unstuctured_haystack import UnstructuredDiscordConnector
-from .unstuctured_haystack import UnstructuredGitHubConnector
+from unstructured_haystack.discord import UnstructuredDiscordConnector
+from unstructured_haystack.github import UnstructuredGitHubConnector
