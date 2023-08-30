@@ -33,8 +33,9 @@ class UnstructuredConnector:
                 with open(json_file,'r') as fin:
                     unstructured_doc = json.load(fin)
                 for el in unstructured_doc:
-                    text = "\n".join(el['text'] for el in unstructured_doc)
-                    haystack_docs.append(Document(content=text, metadata=el['metadata']))
+                    metadata = el['metadata']
+                    metadata['unsturctured_type'] = el['type']
+                    haystack_docs.append(Document(content=el['text'], metadata=metadata))
         else:
             print('Command failed. Error:')
             print(error.decode())
