@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 from haystack.preview import component, Document
 from .unstuctured_haystack import UnstructuredConnector
 
@@ -14,7 +14,7 @@ class UnstructuredDiscordConnector(UnstructuredConnector):
         self.opts.extend(["--token", discord_token])
     
     @component.output_types(documents=List[Document])
-    def run(self, channels: str, output_dir: str = "discord-example", period: int = 1):
+    def run(self, channels: str, output_dir: Optional[str] = "discord-example", period: Optional[int] = 1):
          # Run the command
         self.opts.extend([
         "--channels", channels,
