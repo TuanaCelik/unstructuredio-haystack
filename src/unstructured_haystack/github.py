@@ -1,6 +1,7 @@
-from typing import List, Optional
+from typing import Any, Dict, List, Optional
 from haystack.preview import component, Document
 from .unstuctured_haystack import UnstructuredConnector
+from haystack.schema import Document, MultiLabel
 
 @component
 class UnstructuredGitHubConnector(UnstructuredConnector):
@@ -40,3 +41,21 @@ class UnstructuredGitHubConnector(UnstructuredConnector):
         ])
         
         return super().run()
+
+    
+# class UnstructuredGitHubConnectorV1(BaseComponent):
+#     outgoing_edges = 1
+
+#     def __init__(self, api_key: str, repo: str, git_branch: str = "main", output_dir: str = "github-ingest-output"):
+#         self.connector = UnstructuredGitHubConnector(api_key=api_key, repo=repo, git_branch=git_branch, output_dir=output_dir)
+    
+#     def run(self, repo: Optional[str] = None, git_branch: Optional[str] = None):
+#         documents = self.connector.run(repo=repo, git_branch=git_branch)
+#         docs = []
+#         for doc in documents:
+#             docs.append(Document(content=doc.content, metadata=doc.metadata))
+#         output = {"documents": docs}
+#         return output, "output_1"
+    
+#     def run_batch(self, queries: str | List[str] | None = None, file_paths: List[str] | None = None, labels: MultiLabel | List[MultiLabel] | None = None, documents: List[Document] | List[List[Document]] | None = None, meta: Dict[str, Any] | List[Dict[str, Any]] | None = None, params: dict | None = None, debug: bool | None = None):
+#         pass

@@ -4,3 +4,4 @@
 
 from unstructured_haystack.discord import UnstructuredDiscordConnector
 from unstructured_haystack.github import UnstructuredGitHubConnector
+from unstructured_haystack.google_drive import UnstructuredGoogleDriveConnector

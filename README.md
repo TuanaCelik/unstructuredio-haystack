@@ -10,8 +10,9 @@
 This is an example Haystack 2.0 integration. It's an integration for Unstructured.io connectors. Please contribute 🚀
 
 The current version has 2 available Unstructured connectors:
-- Discord
-- GitHub
+- **Discord**: `UnstructuredDiscordConnector`
+- **GitHub**: `UnstructuredGitHubConnector`
+- **Google Drive**: `UnstructuredGoogleDriveConnector`
 
 ## How to use in a Haystack 2.0 Pipeline 
 For example, you can write documents fetched from Discord using the `UnstructuredDiscordConnector`:

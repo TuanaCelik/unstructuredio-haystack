@@ -1,2 +1,3 @@
 haystack-ai
 unstructured[github]
+farm-haystack
