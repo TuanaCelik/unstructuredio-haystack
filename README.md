@@ -32,5 +32,4 @@ indexing.add_component("connector", connector)
 indexing.add_component("writer", DocumentWriter(document_store))
 indexing.connect("connector.documents", "writer.documents")
 indexing.run({"connector": {"channels" : "993539071815200889", "period": 3, "output_dir" : "discord-example"}})
-
 ```
