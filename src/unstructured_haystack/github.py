@@ -1,7 +1,6 @@
 from typing import Any, Dict, List, Optional
 from haystack.preview import component, Document
 from .unstuctured_haystack import UnstructuredConnector
-from haystack.schema import Document, MultiLabel
 
 @component
 class UnstructuredGitHubConnector(UnstructuredConnector):
