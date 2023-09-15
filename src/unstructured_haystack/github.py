@@ -8,11 +8,12 @@ class UnstructuredGitHubConnector(UnstructuredConnector):
     A component that allows you to use Unstrucrured.io connectors to fetch Documents from various APIs.
 
     """
-    def __init__(self, api_key: str, repo: str, git_branch: str = "main", output_dir: str = "github-ingest-output"):
+    def __init__(self, api_key: str, repo: str, git_token: str = None, git_branch: str = "main", output_dir: str = "github-ingest-output"):
         super().__init__(api_key=api_key, output_dir = output_dir)
 
         self.args.append("github")
         self.repo = repo
+        self.git_token  = git_token
         self.git_branch = git_branch
         self.output_dir = output_dir
        
@@ -32,6 +33,9 @@ class UnstructuredGitHubConnector(UnstructuredConnector):
         else:
             self.opts.append(self.git_branch)
         
+        if self.git_token != None:
+            self.opts.extend(["--git-access-token", self.git_token])
+            
         self.opts.extend([
         "--structured-output-dir",  self.output_dir,
         "--num-processes", "2",
