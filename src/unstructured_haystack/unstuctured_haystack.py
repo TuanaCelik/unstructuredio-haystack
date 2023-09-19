@@ -38,5 +38,5 @@ class UnstructuredConnector:
                     haystack_docs.append(Document(content=el['text'], metadata=metadata))
         else:
             print('Command failed. Error:')
-            print(error.decode())
+            print(error)
         return {"documents": haystack_docs}

@@ -34,7 +34,8 @@ class UnstructuredGitHubConnector(UnstructuredConnector):
             self.opts.append(self.git_branch)
         
         if self.git_token != None:
-            self.opts.extend(["--git-access-token", self.git_token])
+            self.opts.append("--git-access-token")
+            self.opts.append(self.git_token)
             
         self.opts.extend([
         "--structured-output-dir",  self.output_dir,
