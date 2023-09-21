@@ -25,19 +25,18 @@ class UnstructuredConnector:
         process = subprocess.Popen(command, stdout=subprocess.PIPE)
         output, error = process.communicate()
 
-        # Print output
+        haystack_docs=[]
         if process.returncode == 0:
-            haystack_docs=[]
             print(f'{self.output_dir}/**/*.json')
             for json_file in glob.glob(f'{self.output_dir}/**/*.json', recursive=True):
                 with open(json_file,'r') as fin:
                     unstructured_doc = json.load(fin)
                     for el in unstructured_doc:
-                        print(el)
                         metadata = el['metadata']
                         metadata['unstructured_type'] = el['type']
                         haystack_docs.append(Document(text=el['text'], metadata=metadata))
         else:
             print('Command failed. Error:')
-            print(error)
+            error.decode()
+            return
         return {"documents": haystack_docs}
