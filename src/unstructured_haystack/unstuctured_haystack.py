@@ -32,10 +32,11 @@ class UnstructuredConnector:
             for json_file in glob.glob(f'{self.output_dir}/**/*.json', recursive=True):
                 with open(json_file,'r') as fin:
                     unstructured_doc = json.load(fin)
-                for el in unstructured_doc:
-                    metadata = el['metadata']
-                    metadata['unstructured_type'] = el['type']
-                    haystack_docs.append(Document(content=el['text'], metadata=metadata))
+                    for el in unstructured_doc:
+                        print(el)
+                        metadata = el['metadata']
+                        metadata['unstructured_type'] = el['type']
+                        haystack_docs.append(Document(text=el['text'], metadata=metadata))
         else:
             print('Command failed. Error:')
             print(error)
